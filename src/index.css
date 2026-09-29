@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+:root {
+  --scroll-progress: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #0a0a0f;
+  color: #e4e4e7;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: 0.1px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #6366f1;
+  color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#6366f1, #22d3ee);
+  border-radius: 999px;
+}
+
+@layer components {
+  /* ---------- background ---------- */
+  .bg-root {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .bg-base {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(120% 80% at 50% -10%, #1a1a2e 0%, transparent 60%),
+      linear-gradient(180deg, #0f0f17 0%, #0a0a0f 45%, #08080c 100%);
+  }
+
+  /* Subtle grid, fades out while scrolling */
+  .bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(80% 60% at 50% 30%, #000 0%, transparent 78%);
+  }
+
+  /* Two slow-moving accent glows */
+  .bg-glow {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(90px);
+  }
+
+  .bg-glow-a {
+    top: -14vh;
+    left: -10vw;
+    width: 55vw;
+    height: 55vh;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.5), transparent 70%);
+    will-change: transform;
+  }
+
+  .bg-glow-b {
+    right: -14vw;
+    bottom: -12vh;
+    width: 52vw;
+    height: 52vh;
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.32), transparent 70%);
+    will-change: transform, opacity;
+  }
+
+  /* Parallax image layers — the height is set inline from JS */
+  .bg-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    will-change: transform;
+    /* Fade the image into the page at the top and bottom */
+    mask-image: linear-gradient(
+      180deg,
+      transparent 0%,
+      #000 18%,
+      #000 82%,
+      transparent 100%
+    );
+  }
+
+  .bg-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      120% 90% at 50% 40%,
+      transparent 30%,
+      rgba(8, 8, 12, 0.75) 100%
+    );
+  }
+
+  /* Light film grain so the gradients never look like flat plastic */
+  .bg-grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
+  }
+
+  /* ---------- layout ---------- */
+  .section {
+    @apply relative w-full scroll-mt-24 px-4 py-20 sm:px-6 sm:py-28;
+  }
+
+  .shell {
+    @apply mx-auto w-full max-w-5xl;
+  }
+
+  .panel {
+    @apply rounded-3xl border border-white/10 bg-zinc-900/60 shadow-2xl shadow-black/50 backdrop-blur-2xl;
+  }
+
+  .chip {
+    @apply rounded-full border border-indigo-400/30 bg-indigo-400/10 px-3 py-1 text-xs font-medium text-indigo-200;
+  }
+
+  .title {
+    @apply text-center text-4xl font-bold tracking-tight text-white sm:text-5xl;
+  }
+
+  .subtitle {
+    @apply mx-auto mt-3 max-w-2xl text-center text-sm leading-relaxed text-zinc-400 sm:text-base;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-indigo-500 text-white shadow-lg shadow-indigo-500/25 hover:bg-indigo-400 hover:shadow-indigo-400/30;
+  }
+
+  .btn-ghost {
+    @apply border border-white/15 text-zinc-200 hover:border-indigo-400/60 hover:bg-white/5 hover:text-white;
+  }
+
+  .nav-link {
+    @apply rounded-full px-3 py-2 text-sm font-medium text-zinc-400 transition-colors hover:text-white;
+  }
+
+  .nav-link-active {
+    @apply bg-white/10 text-white;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .bg-layer,
+  .bg-glow-a,
+  .bg-glow-b {
+    transition: none;
+  }
+}
