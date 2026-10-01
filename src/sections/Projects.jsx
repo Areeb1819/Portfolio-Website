@@ -4,24 +4,24 @@ const projects = [
     description:
       'A home listing website where users browse available properties. Each listing shows the photos, price, location and key details of the home, arranged in a clean responsive grid that works well on both mobile and desktop.',
     tags: ['HTML', 'CSS', 'Responsive Layout'],
-    live: 'https://example.com',
-    code: 'https://github.com/Areeb1819',
+    live: 'https://areeb1819.github.io/Realstate-Project/',
+    code: 'https://github.com/Areeb1819/Realstate-Project',
   },
   {
     title: 'IntraDOS Clone',
     description:
       'A clone of the classic IntraDOS file manager, rebuilt from scratch. It includes file and folder browsing, directory navigation, a selection bar and a details view, styled to match the original retro interface.',
     tags: ['HTML', 'CSS', 'UI Recreation'],
-    live: 'https://example.com',
-    code: 'https://github.com/Areeb1819',
+    live: 'https://areeb1819.github.io/INTRADOS-Design/',
+    code: 'https://github.com/Areeb1819/INTRADOS-Design',
   },
   {
     title: 'Developer Portfolio',
     description:
       'This website. A single page portfolio built with React and Tailwind CSS, featuring a scroll driven animated background, responsive navigation, project cards and a contact form that connects straight to WhatsApp.',
     tags: ['React', 'Tailwind CSS', 'JavaScript'],
-    live: 'https://example.com',
-    code: 'https://github.com/Areeb1819',
+    live: 'https://areeb1819.github.io/Portfolio-Website/',
+    code: 'https://github.com/Areeb1819/Portfolio-Website',
   },
 ]
 
